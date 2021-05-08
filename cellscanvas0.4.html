@@ -87,11 +87,8 @@
             //process forces
             let cellforcev=[0,0]
 
-            if(! ( idxToRegion(i) in regions))
-                reindex()
-
-            for(let j of regions[idxToRegion(i)]) {
-            // for(let j=0;j<cells.length;j++) {
+            // for(let j of regions[idxToRegion(i)]) {
+            for(let j=0;j<cells.length;j++) {
                 if(j==i)
                     continue
 
@@ -113,10 +110,10 @@
 
     function tick() {
         const origLen=cells.length
-        let div = false
+
         doForces()
 
-        //    if(i%20==0) reindex()
+          //  if(i%10==0) reindex()
         //
         for(let i=0;i<origLen;i++) {
             //process forces
@@ -124,7 +121,6 @@
 
             //divide
             if(cells[i][2]>30) {
-                div=true
                 let newCell=cells[i].slice()
                 newCell[2]=newCell[2]/2
                 newCell[0]=newCell[0]+newCell[2]*2
@@ -138,16 +134,11 @@
 
             //grow
             else {
-                cells[i][2]+=5
+                cells[i][2]+=2
             }
 
 
         }
-
-        if(div)
-            reindex()
-
-
         render()
 
     }
