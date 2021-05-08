@@ -1,0 +1,207 @@
+<head>
+<style>
+#nodes > div {
+  height:20px;
+  width:20px;
+  position:absolute;
+  background:gray;
+}
+
+.edge {
+  height:3px;
+  background:red;
+  position: absolute;
+}
+</style>
+</head>
+<body>
+
+    
+<div id="field">
+<div id="nodes"></div>
+<div id="edges"></div>
+</div>
+
+
+<button onClick="makeAndAddObj()">
+ Make Obj
+</button>
+</body>
+
+<script>
+  const SCALE=30
+  
+  objs = [
+    [1, 2],
+    [3, 3],
+    [10, 5]
+  ]
+  
+  edges=[
+  [0,1],
+  [1,2]
+  ]
+  
+  function activate(e) {
+    e.style.background = "red"
+  }
+  
+  function makeAndAddObj() {
+    objs.push([4, 4])
+  
+    var o = document.createElement("div");
+    o.innerHTML = objs.length;
+    o.onclick = function() {
+      activate(o)
+    };
+    o["-data-id"] = objs.length
+    o.contentEditable = true
+    document.getElementById("nodes").appendChild(o)
+  
+    /* document.getElementById("field").appendChild(o) */
+    ;
+  
+  
+  
+  }
+  
+  function objDist(pt1Idx,pt2Idx) {
+    return dist(objs[pt2Idx][0]-objs[pt1Idx][0],objs[pt2Idx][1]-objs[pt1Idx][1])
+  }
+  
+  function dist(a,b) {
+    return Math.sqrt( a*a + b*b );
+  }
+  
+  function makeEdgeElem(edge) {
+  
+    let len=objDist(edge[0],edge[1])
+    
+  
+    var e = document.createElement("div");
+    e.style.width=len*SCALE+"px"
+    e.className="edge"
+    e.innerHTML = edges.length;
+  /*   
+    o.onclick = function() {
+      activate(o)
+    };
+    o["-data-id"] = objs.length
+    o.contentEditable = true */
+    
+    e.style.left = objs[edge[0]][0] * SCALE + "px";
+    e.style.top = objs[edge[0]][1] * SCALE + "px";
+
+    // console.log(edges)
+    document.getElementById("edges").appendChild(e)
+  
+    /* document.getElementById("field").appendChild(o) */
+    ;
+
+    
+  
+  
+  }
+  
+  
+  // ===============================
+
+
+  
+    edges.forEach((e)=>makeEdgeElem(e));
+  
+  
+        //init
+        //# ugly 
+        //https://stackoverflow.com/questions/14616253/javascript-calling-object-function-method-from-onclick-event-with-dynamic-argu/14616303
+  
+  
+  
+        for (i in objs) {
+          document.getElementById("nodes").innerHTML += `<div style="
+      left:${objs[i][0]*10}px;
+      top:${objs[i][1]*10}px;
+      " 
+      -data-id="${i}"
+      onClick="activate(this)"
+      contentEditable>${i}</div>`
+        }
+  
+  
+  
+        osc = 0
+  
+        function to() {
+          setTimeout(function() {
+  
+                for (let i = 0; i < objs.length; i++) {
+  
+                  objs[i][0] += .1 * Math.sin((osc++/100.));
+                      objs[i][1] += .1 * Math.sin((osc++/30.));
+  
+                          renMoveObjs();
+                        }
+                        to()
+  
+                      }, 30)
+                  }
+                  to()
+  
+  
+                  function renMoveObjs() {
+                    kids = document.getElementById("nodes").children
+  
+                    //    for(i in kids) {
+  
+                    for (i = 0; i < kids.length; i++) {
+  
+  
+                      //console.log(i,objs[i][0])
+  
+                      //     console.log(kids, i,objs[i])
+                      
+                      kids[i].style.left = objs[i][0] * SCALE + "px";
+                      kids[i].style.top = objs[i][1] * SCALE + "px";
+  
+                      /* kids[i].style = `left:${objs[i][0]*30} px;top:${objs[i][1]*20}px;` */
+  
+                    }
+  
+                  }
+  
+  
+  
+  
+                  /*
+    for(i in objs) {
+      document.querySelector("#field").innerHTML(`<div style="left:${objs[i][0]*100};top:${objs[i][1]*100}"></div>`)
+    }
+    
+    /*
+  ray=[3,5,2,3,1]
+    
+    count=0
+    done=false
+    while(!done) {
+    done=true
+    
+    for(i=0;i<ray.length;i++){
+    count++
+      if(ray[i]>ray[i+1]) {
+        t=ray[i]
+        ray[i]=ray[i+1]
+        ray[i+1]=t
+        done=false
+      }
+        
+      }
+    }
+    
+    
+    document.write(ray+" <br>")
+      document.write(count)
+      */
+  
+                
+  
+  </script>

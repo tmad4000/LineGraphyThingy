@@ -1,0 +1,45 @@
+
+
+
+<head>
+<style>
+
+</style>
+</head>
+
+<body>
+
+<div id="field">
+
+</div>
+
+</body>
+
+<script>
+//start with a blank canvas and just make! #best
+
+//summer
+row1=[1,1,1]
+row2=[1,1,1,1]
+
+document.write(...row1,"<br>")
+document.write(...row2,"<br>")
+
+function next() {
+    let n=row1.length+row2.length
+    row1=row2
+    row2=Array(n).fill("1")
+
+    let ratio=row2.length/row1.length
+    document.body.innerHTML+= `${row2.join("")}<br>`
+    // document.body.innerHTML+= `${ratio} | ${row2.join("")}<br>`
+
+}
+document.write(`<button onclick="next()">Next</button>`,"<br>")
+
+
+
+
+
+
+</script>

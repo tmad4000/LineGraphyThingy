@@ -1,0 +1,86 @@
+
+
+
+<head>
+<style>
+
+</style>
+</head>
+
+<body>
+
+<div id="field">
+
+</div>
+
+
+<canvas id="myCanvas" width="300" height="600" style="border:1px solid #d3d3d3;">
+    Your browser does not support the HTML5 canvas tag.</canvas>
+    
+   
+</body>
+
+<script>
+    var c = document.getElementById("myCanvas");
+    var ctx = c.getContext("2d");
+    ctx.beginPath();
+
+    let ptx=100,pty=300
+    ctx.moveTo(ptx, pty);
+
+
+    let fib =[1,1]
+    for(let i=1;i<20;i++) {
+        fib.push(fib[i]+fib[i-1])
+    }
+
+    let dir=[1,0]
+
+    const SCALE=1
+    for(let i=0;i<fib.length;i++) {
+        ptx+=dir[0]*SCALE*fib[i]
+        pty+=dir[1]*SCALE*fib[i]
+        ctx.lineTo(ptx, pty);
+        ctx.stroke();    
+        
+        console.log(dir)
+        // debugger
+        if(dir[0])
+            dir=[0,dir[0]]
+        else if(dir[1])
+            dir=[-1*dir[1],0]
+    }
+
+    // ctx.lineTo(300, 150);
+    // ctx.stroke();
+    </script>
+
+
+<script>
+//start with a blank canvas and just make! #best
+
+//summer
+row1=[1,1,1]
+row2=[1,1,1,1]
+
+document.write(...row1,"<br>")
+document.write(...row2,"<br>")
+
+function next() {
+    let n=row1.length+row2.length
+    row1=row2
+    row2=Array(n).fill("1")
+
+    let ratio=row2.length/row1.length
+    document.body.innerHTML+= `${row2.join("")}<br>`
+    // document.body.innerHTML+= `${ratio} | ${row2.join("")}<br>`
+
+}
+document.write(`<button onclick="next()">Next</button>`,"<br>")
+
+
+
+
+
+
+</script>

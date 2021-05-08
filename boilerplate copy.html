@@ -1,0 +1,45 @@
+
+
+
+<head>
+<style>
+
+</style>
+</head>
+
+<body>
+
+<div id="field">
+</div>
+
+</body>
+
+<script>
+//start with a blank canvas and just make! #best
+
+nums=[]
+primes=[]
+
+for(i=0;i<100;i++) {
+    nums.push(i)
+}
+
+for(i=0;i<nums.length;i++) {
+    isPrime=true
+    for(j=2;j<nums[i];j++) {
+        if(nums[i] % j == 0) {
+            isPrime=false
+            break;
+        }
+
+    }
+    if(isPrime) 
+        primes.push(nums[i])
+
+}
+
+console.log(primes)
+
+
+
+</script>

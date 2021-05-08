@@ -1,0 +1,113 @@
+
+
+
+<head>
+<style>
+.gridCell {
+    height:30px;
+    width:30px;
+    display:inline-block;
+    border:1px solid black
+}
+</style>
+</head>
+
+<body>
+
+<div id="field" >
+<!-- just acting not knowing why intuition precedes reason just making the divs fiddling and seeing where thigns go. like poetry or art or grocery shopping 
+turns into cellular automaton? 
+#write coding as an ecstatic ritual
+-->
+    <div> </div>
+    <div> </div>
+    <div> </div>
+    <div> </div>
+
+</div>
+
+</body>
+
+<script>
+//start with a blank canvas and just make! #best
+// rules = [
+//     [1,0,1,
+//      0,  0,
+//      1,0,1],
+// ]
+
+// for(const rule of rules) {
+
+// }
+
+
+grid=Array(10).fill().map( ()=>Array(10).fill())
+console.log(grid)
+
+function togg(e) {
+    let attrs= e.attributes
+    console.log(el=e.attributes["-data-c"].value)
+    console.log(el=e.attributes["-data-r"].value)
+    let c= attrs["-data-c"].value
+    let r= attrs["-data-r"].value
+    grid[r][c]=1
+    render()
+    
+}
+
+function prepRender() {
+    return grid.map( (r,ri) => `<div >
+        ${r.map( (e,ci)=> `<span class="gridCell" -data-r="${ri}" -data-c="${ci}" onclick="togg(this)" >${e==true ? "1":"0"}</span>`).join("")}
+        </div>`)
+}
+function render() {
+    document.getElementById("field").innerHTML=prepRender().join("")
+}
+
+
+render()
+
+nums=[]
+primes=[]
+
+for(i=0;i<100;i++) {
+    nums.push(i)
+}
+
+for(i=0;i<nums.length;i++) {
+    isPrime=true
+    for(j=2;j<nums[i];j++) {
+        if(nums[i] % j == 0) {
+            isPrime=false
+            break;
+        }
+
+    }
+    if(isPrime) 
+        primes.push(nums[i])
+
+}
+
+function factor(p) {
+    const max = Math.sqrt(p)
+    for(j=2;j<max;j++) {
+        if(p % j == 0) {
+            isPrime=false
+            return j
+            break;
+        }
+
+    }
+ 
+}
+
+let sp= primes[12] * primes[16]
+
+console.log(factor(sp))
+console.log(primes[12] , primes[16] )
+console.log(primes[12] * primes[16] )
+console.log(primes)
+
+
+
+</script>

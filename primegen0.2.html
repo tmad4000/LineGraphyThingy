@@ -1,0 +1,63 @@
+
+
+
+<head>
+<style>
+
+</style>
+</head>
+
+<body>
+
+<div id="field">
+</div>
+
+</body>
+
+<script>
+//start with a blank canvas and just make! #best
+
+nums=[]
+primes=[]
+
+for(i=0;i<100;i++) {
+    nums.push(i)
+}
+
+for(i=0;i<nums.length;i++) {
+    isPrime=true
+    for(j=2;j<nums[i];j++) {
+        if(nums[i] % j == 0) {
+            isPrime=false
+            break;
+        }
+
+    }
+    if(isPrime) 
+        primes.push(nums[i])
+
+}
+
+function factor(p) {
+    const max = Math.sqrt(p)
+    for(j=2;j<max;j++) {
+        if(p % j == 0) {
+            isPrime=false
+            return j
+            break;
+        }
+
+    }
+ 
+}
+
+let sp= primes[12] * primes[16]
+
+console.log(factor(sp))
+console.log(primes[12] , primes[16] )
+console.log(primes[12] * primes[16] )
+console.log(primes)
+
+
+
+</script>

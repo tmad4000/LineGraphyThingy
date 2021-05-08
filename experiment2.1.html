@@ -1,0 +1,79 @@
+
+
+
+<head>
+<style>
+.player {
+    background: solid red;
+    width:20px;
+    height:20px;
+    border:1px solid orange;
+    position:absolute;
+
+
+}
+</style>
+</head>
+
+<body>
+
+<div id="field" style="border:1px solid gray; width:400px;height:400px"
+onmousemove="myFunction(event)" onmouseout="clearCoor()
+>
+    <span class="player">asdf</span>
+    <span class="player">asdf</span>
+
+</div>
+
+<div"></div>
+
+
+</body>
+
+<script src=
+"https://code.jquery.com/jquery-1.12.4.min.js">
+    </script>
+
+<script>
+
+$(document).keydown(function(e) {
+                if (e.which == '40') { //down arrow key
+                    e.preventDefault()
+                    $(".player").finish().animate({
+                        top: "+=25"
+                    });
+                }
+                if (e.which == '38') { //down arrow key
+                    e.preventDefault()
+                    $(".player").finish().animate({
+                        top: "-=25"
+                    });
+                }
+
+            });
+
+//start with a blank canvas and just make! #best
+
+let c=
+
+document.querySelectorAll(".player")[0].style.top=30
+document.querySelectorAll(".player")[0].style.left=30
+
+
+</script>
+
+
+
+<script>
+    function myFunction(e) {
+      var x = e.clientX;
+      var y = e.clientY;
+      var coor = "Coordinates: (" + x + "," + y + ")";
+      document.getElementById("demo").innerHTML = coor;
+    }
+    
+    function clearCoor() {
+      document.getElementById("demo").innerHTML = "";
+    }
+    </script>
+    
